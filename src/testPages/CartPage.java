@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CartPage {
     private WebDriver driver;
     private WebDriverWait wait;
-    private static final double DELTA = 0.01;
+    private static final double TOTAL = 0.01;
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -47,7 +47,7 @@ public class CartPage {
         System.out.printf("%s → $%.2f × %d = $%.2f (found $%.2f)%n",
             productName, price, quantity, expected, subtotal);
 
-        return Math.abs(expected - subtotal) < DELTA;
+        return Math.abs(expected - subtotal) < TOTAL;
     }
 
     public boolean isTotalCorrect() {
@@ -76,7 +76,7 @@ public class CartPage {
 
             System.out.printf("Computed total: $%.2f ‖ Displayed total: $%.2f%n",
                 sum, displayed);
-            return Math.abs(sum - displayed) < DELTA;
+            return Math.abs(sum - displayed) < TOTAL;
         } catch (Exception e) {
             System.out.println("Error verifying total: " + e.getMessage());
             return false;
